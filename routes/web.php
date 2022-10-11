@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     UserController
 };
+use App\Http\Controllers\Admin\CommentController;
 use App\Models\User;
+use Egulias\EmailValidator\Parser\Comment;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,9 @@ use App\Models\User;
 |
 */
 
+Route::post('/users/{id}/comments', [CommentController::class,'store'])->name('comments.store');
+Route::get('/users/{id}/comments/create', [CommentController::class,'create'])->name('comments.create');
+Route::get('/users/{id}/comments', [CommentController::class,'index'])->name('comments.index');
 
 Route::get('/', function () {
     return view('welcome');
